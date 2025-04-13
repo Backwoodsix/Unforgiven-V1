@@ -1,0 +1,2593 @@
+local v0 = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))();
+local v1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))();
+local v2 = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))();
+local v3 = v0:CreateWindow({Title="🦉Unforgiven V1 | TB3🦉",TabWidth=(1741 - (1535 + 46)),Size=UDim2.fromOffset(577 + 3, 67 + 393),Theme="Darker",MinimizeKey=Enum.KeyCode.RightShift});
+local v4 = game:GetService("Players");
+local function v5(v146)
+	if (v146 == v4.LocalPlayer) then
+		local v493 = 560 - (306 + 254);
+		while true do
+			if (v493 == 0) then
+				warn(v146.Name .. " wurde versucht zu kicken oder zu bannen, aber der Kick/Ban wurde blockiert.");
+				return Enum.PlayerRemoveReason.Unknown;
+			end
+		end
+	end
+end
+v4.PlayerRemoving:Connect(v5);
+v0:Notify({Title="Unforgiven V1",Content="Client is 100% Loaded",SubContent="",Duration=5});
+wait(1 + 1);
+v0:Notify({Title="Unforgiven Version",Content="Checking If Status is UpToDate",SubContent="",Duration=(9 - 4)});
+wait(1469 - (899 + 568));
+v0:Notify({Title="Unforgiven Version",Content="Status: UpToDate",SubContent="",Duration=(4 + 1)});
+wait(7 - 4);
+v0:Notify({Title="Anti-Cheat Bypass",Content="Bypass is Loaded",SubContent="",Duration=(608 - (268 + 335))});
+local v6 = {Credits=v3:AddTab({Title="Credits",Icon="paperclip"}),Visual=v3:AddTab({Title="Visual",Icon="aperture"}),Combat=v3:AddTab({Title="Combat",Icon="skull"}),Player=v3:AddTab({Title="Player",Icon="user"}),Others=v3:AddTab({Title="Others",Icon="users"}),Troll=v3:AddTab({Title="Troll",Icon="laugh"}),PickUp=v3:AddTab({Title="PickUp",Icon="grab"}),Dupe=v3:AddTab({Title="Dupe",Icon="briefcase"}),AutoFarm=v3:AddTab({Title="AutoFarm",Icon="leaf"}),Money=v3:AddTab({Title="Money",Icon="wallet"}),Teleport=v3:AddTab({Title="Teleport",Icon="map"}),Shop=v3:AddTab({Title="Shop",Icon="shopping-cart"}),Bypasses=v3:AddTab({Title="Bypasses",Icon="shield-check"}),Game=v3:AddTab({Title="Game",Icon="cog"}),Settings=v3:AddTab({Title="Settings",Icon="cog"})};
+local function v7()
+	if game.Lighting then
+		for v546, v547 in pairs(game.Lighting:GetChildren()) do
+			if (v547:IsA("PostEffect") or v547:IsA("BloomEffect") or v547:IsA("SunRaysEffect") or v547:IsA("DepthOfFieldEffect")) then
+				pcall(function()
+					v547:Destroy();
+				end);
+			end
+		end
+	end
+end
+local function v8(v147)
+	local v148 = 290 - (60 + 230);
+	while true do
+		if (v148 == (572 - (426 + 146))) then
+			game.Lighting.ClockTime = v147;
+			if _G.LockTimeConnection then
+				_G.LockTimeConnection:Disconnect();
+			end
+			v148 = 1 + 0;
+		end
+		if (v148 == (1457 - (282 + 1174))) then
+			_G.LockTimeConnection = game.Lighting:GetPropertyChangedSignal("ClockTime"):Connect(function()
+				if (game.Lighting.ClockTime ~= v147) then
+					game.Lighting.ClockTime = v147;
+				end
+			end);
+			break;
+		end
+	end
+end
+v6.Game:AddButton({Title="Remove All Effects (FPS)",Description="Deletes all specific effects from Lighting permanently",Callback=function()
+	task.spawn(function()
+		pcall(function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/DracoSwagBaby/ScriptsBanger/refs/heads/main/Remove%20All%20Effects"))();
+		end);
+	end);
+	v7();
+end});
+v6.Game:AddButton({Title="More Vibrant [RTX]",Description="Deletes all specific effects from Lighting permanently",Callback=function()
+	task.spawn(function()
+		pcall(function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/DracoSwagBaby/ScriptsBanger/refs/heads/main/RTX"))();
+		end);
+	end);
+	v7();
+end});
+local v9 = v6.Game:AddSection("Extra");
+v6.Game:AddButton({Title="Set to Day [Permanently]",Description="Click to set the game time to permanent day.",Callback=function()
+	v8(823 - (569 + 242));
+end});
+v6.Game:AddButton({Title="Set to Night [Permanently]",Description="Click to set the game time to permanent night.",Callback=function()
+	v8(0);
+end});
+local v9 = v6.Game:AddSection("About Admin");
+local v10 = v6.Game:AddToggle("AdminAlert", {Title="Admin Alert",Description="Notifies when an admin joins",Default=false,Callback=function(v149)
+	_G.AdminAlertEnabled = v149;
+end});
+local function v11()
+	for v379, v380 in ipairs(game.Players:GetPlayers()) do
+		for v494, v495 in ipairs(v380:GetChildren()) do
+			if v495.Name:find("_Tracker") then
+				v0:Notify({Title="Admin Alert",Content=("User: " .. v380.Name .. " is an Admin! Be Careful!"),Duration=(14 - 9)});
+				return;
+			end
+		end
+	end
+end
+spawn(function()
+	while wait(1 + 9) do
+		if _G.AdminAlertEnabled then
+			v11();
+		end
+	end
+end);
+v6.Bypasses:AddButton({Title="Instant Prompts",Description="Removes the E Holding Time Anywhere",Callback=function()
+	local v150 = 0;
+	local v151;
+	while true do
+		if ((1024 - (706 + 318)) == v150) then
+			v151 = nil;
+			function v151()
+				for v611, v612 in ipairs(game:GetService("Workspace"):GetDescendants()) do
+					if v612:IsA("ProximityPrompt") then
+						v612.HoldDuration = 0;
+					end
+				end
+			end
+			v150 = 1252 - (721 + 530);
+		end
+		if (v150 == (1272 - (945 + 326))) then
+			v151();
+			game:GetService("Workspace").DescendantAdded:Connect(function(v592)
+				if v592:IsA("ProximityPrompt") then
+					v592.HoldDuration = 0 - 0;
+				end
+			end);
+			break;
+		end
+	end
+end});
+v6.Bypasses:AddButton({Title="Anti-Fall",Description="Disables Fall Damage",Callback=function()
+	local function v152()
+		local v381 = 0 + 0;
+		local v382;
+		while true do
+			if (v381 == (700 - (271 + 429))) then
+				v382 = game.Players.LocalPlayer;
+				if (v382 and v382.Character) then
+					local v669 = v382.Character:FindFirstChild("FallDamageRagdoll");
+					if v669 then
+						v669.Disabled = true;
+					end
+				end
+				break;
+			end
+		end
+	end
+	task.spawn(function()
+		while true do
+			task.wait(1);
+			v152();
+		end
+	end);
+end});
+v6.Bypasses:AddButton({Title="Anti-Hunger",Description="Disables the hunger system permanently",Callback=function()
+	local v153 = 0 + 0;
+	local v154;
+	while true do
+		if ((1501 - (1408 + 92)) == v153) then
+			task.spawn(function()
+				while true do
+					task.wait(1087 - (461 + 625));
+					v154();
+				end
+			end);
+			break;
+		end
+		if (v153 == (1288 - (993 + 295))) then
+			v154 = nil;
+			function v154()
+				local v594 = 0 + 0;
+				local v595;
+				while true do
+					if (v594 == (1171 - (418 + 753))) then
+						v595 = game.Players.LocalPlayer;
+						if (v595 and v595:FindFirstChild("PlayerGui")) then
+							local v728 = 0 + 0;
+							local v729;
+							while true do
+								if (v728 == (0 + 0)) then
+									v729 = v595.PlayerGui:FindFirstChild("Hunger");
+									if v729 then
+										local v764 = v729:FindFirstChild("Frame") and v729.Frame:FindFirstChild("Frame") and v729.Frame.Frame:FindFirstChild("Frame") and v729.Frame.Frame.Frame:FindFirstChild("HungerBarScript");
+										if v764 then
+											v764.Disabled = true;
+										end
+									end
+									break;
+								end
+							end
+						end
+						break;
+					end
+				end
+			end
+			v153 = 1;
+		end
+	end
+end});
+v6.Bypasses:AddButton({Title="Anti-Sleep",Description="Disables the sleep system permanently",Callback=function()
+	local function v155()
+		local v383 = 0;
+		local v384;
+		while true do
+			if (0 == v383) then
+				v384 = game.Players.LocalPlayer;
+				if (v384 and v384:FindFirstChild("PlayerGui")) then
+					local v670 = v384.PlayerGui:FindFirstChild("SleepGui");
+					if v670 then
+						local v711 = v670:FindFirstChild("Frame") and v670.Frame:FindFirstChild("sleep") and v670.Frame.sleep:FindFirstChild("SleepBar") and v670.Frame.sleep.SleepBar:FindFirstChild("sleepScript");
+						if v711 then
+							v711.Disabled = true;
+						end
+					end
+				end
+				break;
+			end
+		end
+	end
+	task.spawn(function()
+		while true do
+			local v496 = 0 + 0;
+			while true do
+				if (v496 == (0 + 0)) then
+					task.wait(530 - (406 + 123));
+					v155();
+					break;
+				end
+			end
+		end
+	end);
+end});
+v6.Bypasses:AddButton({Title="Anti-Stamina",Description="Disables the stamina system permanently",Callback=function()
+	local function v156()
+		local v385 = game.Players.LocalPlayer;
+		if (v385 and v385:FindFirstChild("PlayerGui")) then
+			local v549 = 0;
+			local v550;
+			while true do
+				if (v549 == (1769 - (1749 + 20))) then
+					v550 = v385.PlayerGui:FindFirstChild("Run") and v385.PlayerGui.Run:FindFirstChild("Frame") and v385.PlayerGui.Run.Frame:FindFirstChild("Frame") and v385.PlayerGui.Run.Frame.Frame:FindFirstChild("Frame") and v385.PlayerGui.Run.Frame.Frame.Frame:FindFirstChild("StaminaBarScript");
+					if v550 then
+						v550.Disabled = true;
+					end
+					break;
+				end
+			end
+		end
+	end
+	task.spawn(function()
+		while true do
+			local v497 = 0;
+			while true do
+				if (v497 == 0) then
+					task.wait(1 + 0);
+					v156();
+					break;
+				end
+			end
+		end
+	end);
+end});
+v6.Bypasses:AddButton({Title="Anti-CameraShake",Description="Disables the camera shake effect permanently",Callback=function()
+	local v157 = 1322 - (1249 + 73);
+	local v158;
+	while true do
+		if (v157 == 0) then
+			v158 = nil;
+			function v158()
+				local v597 = 0 + 0;
+				local v598;
+				while true do
+					if (v597 == 0) then
+						v598 = game.Players.LocalPlayer;
+						if (v598 and v598.Character) then
+							local v730 = 1145 - (466 + 679);
+							local v731;
+							while true do
+								if (v730 == 0) then
+									v731 = v598.Character:FindFirstChild("CameraBobbing");
+									if v731 then
+										v731:Destroy();
+									end
+									break;
+								end
+							end
+						end
+						break;
+					end
+				end
+			end
+			v157 = 1;
+		end
+		if (v157 == (2 - 1)) then
+			task.spawn(function()
+				while true do
+					task.wait(2 - 1);
+					v158();
+				end
+			end);
+			break;
+		end
+	end
+end});
+v6.Bypasses:AddButton({Title="Anti-RentPay",Description="Disables the rent pay permanently",Callback=function()
+	local v159 = 1900 - (106 + 1794);
+	local v160;
+	local v161;
+	while true do
+		if (v159 == (1 + 0)) then
+			if v161 then
+				local v613 = v161:FindFirstChild("LocalScript");
+				if v613 then
+					local v696 = 0 + 0;
+					while true do
+						if (v696 == (0 - 0)) then
+							v613.Disabled = true;
+							v613:Destroy();
+							break;
+						end
+					end
+				else
+				end
+			else
+			end
+			break;
+		end
+		if (v159 == (0 - 0)) then
+			v160 = game:GetService("Players").LocalPlayer;
+			v161 = v160:FindFirstChild("PlayerGui") and v160.PlayerGui:FindFirstChild("RentGui");
+			v159 = 115 - (4 + 110);
+		end
+	end
+end});
+v6.Bypasses:AddButton({Title="Anti-Knockback",Description="Disables the knockback permanently",Callback=function()
+	for v386, v387 in ipairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+		if (v387:IsA("BodyVelocity") or v387:IsA("LinearVelocity") or v387:IsA("VectorForce")) then
+			v387:Destroy();
+		end
+	end
+	if game.ReplicatedStorage:FindFirstChild("AE") then
+		game.ReplicatedStorage.AE:Destroy();
+	end
+	game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").ChildAdded:Connect(function(v388)
+		if (v388:IsA("BodyVelocity") or v388:IsA("LinearVelocity") or v388:IsA("VectorForce")) then
+			v388:Destroy();
+		end
+	end);
+end});
+v6.Bypasses:AddButton({Title="Anti-JumpCooldown",Description="Disables the jump cooldown permanently",Callback=function()
+	local v162 = game:GetService("Players").LocalPlayer;
+	local v163 = v162:FindFirstChild("PlayerGui");
+	if v163 then
+		while true do
+			local v552 = 584 - (57 + 527);
+			local v553;
+			while true do
+				if (v552 == (1428 - (41 + 1386))) then
+					task.wait(104 - (17 + 86));
+					break;
+				end
+				if (v552 == 0) then
+					v553 = v163:FindFirstChild("JumpDebounce");
+					if v553 then
+						v553:Destroy();
+					end
+					v552 = 1 + 0;
+				end
+			end
+		end
+	end
+end});
+local v12 = 0 - 0;
+local v13 = 86 - 56;
+v6.Dupe:AddButton({Title="Dupe Gun/Item",Description="Duplicates the holden gun",Callback=function()
+	local v164 = os.time();
+	if ((v164 - v12) < v13) then
+		local v498 = 166 - (122 + 44);
+		while true do
+			if (v498 == 0) then
+				v0:Notify({Title="Dupe Gun",Content=("Please Wait " .. v13 .. " Seconds!"),Duration=(5 - 2)});
+				return;
+			end
+		end
+	end
+	v12 = v164;
+	v0:Notify({Title="Dupe Gun",Content="Processing...",SubContent="",Duration=(16 - 11)});
+	local function v165()
+		local v389 = game:GetService("Players");
+		local v390 = v389.LocalPlayer;
+		local v391 = v390:FindFirstChild("PlayerGui");
+		if not v391 then
+			return;
+		end
+		local v392 = Instance.new("ScreenGui");
+		v392.Name = "TeleportBlackout";
+		v392.Parent = v391;
+		local v395 = Instance.new("Frame");
+		v395.Size = UDim2.new(1, 0 + 0, 1 + 0, 0 - 0);
+		v395.Position = UDim2.new(65 - (30 + 35), 0 + 0, 1257 - (1043 + 214), 0 - 0);
+		v395.BackgroundColor3 = Color3.new(1212 - (323 + 889), 0, 0);
+		v395.BackgroundTransparency = 0;
+		v395.Parent = v392;
+		local v401 = Instance.new("TextLabel");
+		v401.Size = UDim2.new(0.6 - 0, 580 - (361 + 219), 320.2 - (53 + 267), 0 + 0);
+		v401.Position = UDim2.new(0.2, 0, 413.55 - (15 + 398), 982 - (18 + 964));
+		v401.Text = "discord.gg/BackWoods t";
+		v401.TextColor3 = Color3.new(1, 1, 3 - 2);
+		v401.TextScaled = true;
+		v401.BackgroundTransparency = 1;
+		v401.Font = Enum.Font.SourceSansBold;
+		v401.Parent = v395;
+		local v411 = Instance.new("ImageLabel");
+		v411.Size = UDim2.new(0.3 + 0, 0 + 0, 0.5, 0);
+		v411.Position = UDim2.new(850.35 - (20 + 830), 0, 0.15 + 0, 0);
+		v411.Image = "rbxassetid://122954732244882";
+		v411.BackgroundTransparency = 127 - (116 + 10);
+		v411.Parent = v395;
+		task.spawn(function()
+			for v554 = 0 + 0, 1098 - (542 + 196), 5 do
+				if not v392.Parent then
+					break;
+				end
+				v411.Rotation = v554;
+				task.wait(0.02);
+			end
+		end);
+		task.delay(1.5 - 0, function()
+			if v392 then
+				v392:Destroy();
+			end
+		end);
+		return v392;
+	end
+	v165();
+	local v166 = cloneref(game:GetService("ReplicatedStorage"));
+	local v167 = cloneref(game:GetService("Players"));
+	local v168 = cloneref(game:GetService("Workspace"));
+	local function v169()
+		return v167.LocalPlayer.Character;
+	end
+	local function v170(v417)
+		v169().HumanoidRootPart.CFrame = CFrame.new(v417.Position.X + 2, v417.Position.Y, v417.Position.Z);
+	end
+	local v171 = v166:WaitForChild("Inventory");
+	local v172 = v166:WaitForChild("BackpackRemote");
+	if v169():FindFirstChildOfClass("Tool") then
+		local v499 = 0 + 0;
+		local v500;
+		local v501;
+		local v502;
+		while true do
+			if (v499 == (3 + 1)) then
+				task.wait(0.5 + 0);
+				v170(v502);
+				v0:Notify({Title="Dupe Gun",Content="Duplication Complete!",Duration=(12 - 7)});
+				break;
+			end
+			if (v499 == (4 - 2)) then
+				task.spawn(function()
+					v172:InvokeServer("Store", v500);
+				end);
+				task.spawn(function()
+					v171:FireServer("Change", v500, "Backpack", v501);
+				end);
+				task.wait(1551.5 - (1126 + 425));
+				v499 = 3;
+			end
+			if (v499 == 3) then
+				v170(v502);
+				task.wait(406.2 - (118 + 287));
+				v172:InvokeServer("Grab", v500);
+				v499 = 4;
+			end
+			if (v499 == (0 - 0)) then
+				v500 = v169():FindFirstChildOfClass("Tool").Name;
+				v169():FindFirstChildOfClass("Humanoid"):UnequipTools();
+				v501 = workspace["1# Map"]["2 Crosswalks"].Safes:GetChildren()[1126 - (118 + 1003)];
+				v499 = 2 - 1;
+			end
+			if (v499 == (378 - (142 + 235))) then
+				v502 = v169():FindFirstChild("HumanoidRootPart").CFrame;
+				v170(v501.Union.CFrame);
+				task.wait(0.5 - 0);
+				v499 = 2;
+			end
+		end
+	else
+		v0:Notify({Title="Dupe Gun",Content="No Tool Found!",Duration=5});
+	end
+end});
+local v9 = v6.Dupe:AddSection("How To Use");
+v6.Dupe:AddButton({Title="1. Hold A Gun/Item"});
+v6.Dupe:AddButton({Title="2. Press on Dupe Gun/Item"});
+v6.Dupe:AddButton({Title="3. Wait till it says Duplication Complete!"});
+v6.Dupe:AddButton({Title="4. Go to Teleports and Teleport to 'Store items'"});
+v6.Dupe:AddButton({Title="5. You will Have one Gun/Item in your inventory and Safe"});
+v6.Settings:AddButton({Title="Rejoin Server",Description="Press the button if you want to rejoin the server",Callback=function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/DracoSwagBaby/ScriptsBanger/refs/heads/main/Rejoin%20Script"))();
+end});
+v6.Settings:AddButton({Title="Server Hop",Description="Click to hop to a new server.",Callback=function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/DracoSwagBaby/ScriptsBanger/refs/heads/main/ServerHop%20Script"))();
+end});
+v1:SetLibrary(v0);
+v2:SetLibrary(v0);
+v1:IgnoreThemeSettings();
+v1:SetIgnoreIndexes({});
+v2:SetFolder("FluentScriptHub");
+v1:SetFolder("FluentScriptHub/specific-game");
+v2:BuildInterfaceSection(v6.Settings);
+v6.Credits:AddParagraph({Title=("👋 Welcome " .. v4.LocalPlayer.Name .. "! 🎉"),Content="Enjoy your stay with Unforgiven!"});
+local v9 = v6.Credits:AddSection("Script Owned");
+v6.Credits:AddParagraph({Title="👑 | Creators",Content="BIGBACK/ JFP"});
+local v9 = v6.Credits:AddSection("Socials");
+local v14 = {Discord="https://discord.com/invite/synthx",YouTube="https://youtube.com/@24k_DracoOfficial"};
+v6.Credits:AddButton({Title="🖇️ | Copy Discord Link",Description="Copies the Discord link to clipboard.",Callback=function()
+	setclipboard(v14.Discord);
+	v0:Notify({Title="Copied!",Content="Discord link copied to clipboard.",SubContent="",Duration=(2 + 3)});
+end});
+v6.Credits:AddButton({Title="🖇️ | Constant Updates 🔥",Description="100% undetected.",Callback=function()
+	local v173 = 977 - (553 + 424);
+	while true do
+		if (0 == v173) then
+			setclipboard(v14.YouTube);
+			v0:Notify({Title="Thanks for using Unforgiven!",Content="You are one of the few with access.",SubContent="",Duration=(9 - 4)});
+			break;
+		end
+	end
+end});
+local v4 = game:GetService("Players");
+local v15 = game:GetService("RunService");
+local v16 = v4.LocalPlayer;
+local v17 = {Name=false,Health=false,Distance=false,Highlight=false,Holding=false};
+local v18 = v6.Visual:AddToggle("NameToggle", {Title="Show Name",Description="Toggle to show/hide Player Names",Default=false,Callback=function(v174)
+	v17.Name = v174;
+end});
+local v19 = v6.Visual:AddToggle("HealthToggle", {Title="Show Health",Description="Toggle to show/hide Player Health",Default=false,Callback=function(v176)
+	v17.Health = v176;
+end});
+local v20 = v6.Visual:AddToggle("DistanceToggle", {Title="Show Distance",Description="Toggle to show/hide Distance ESP",Default=false,Callback=function(v178)
+	v17.Distance = v178;
+end});
+local v21 = v6.Visual:AddToggle("HighlightToggle", {Title="Show Highlight",Description="Toggle to show/hide Player Highlight ESP",Default=false,Callback=function(v180)
+	v17.Highlight = v180;
+end});
+local v22 = v6.Visual:AddToggle("HoldingToggle", {Title="Show Holding",Description="Toggle to show what item the player is holding",Default=false,Callback=function(v182)
+	v17.Holding = v182;
+end});
+local function v23(v184)
+	local v185 = 0 + 0;
+	while true do
+		if (v185 == (0 + 0)) then
+			if v184 then
+				for v671, v672 in pairs(v184:GetChildren()) do
+					if v672:IsA("Tool") then
+						return v672.Name;
+					end
+				end
+			end
+			return nil;
+		end
+	end
+end
+local function v24(v186)
+	if (v186 == v16) then
+		return;
+	end
+	local function v187()
+		local v419 = v186.Character;
+		if not v419 then
+			return;
+		end
+		local v420 = v419:FindFirstChild("Head");
+		local v421 = v419:FindFirstChild("HumanoidRootPart");
+		if (not v420 or not v421) then
+			return;
+		end
+		for v503, v504 in pairs(v419:GetChildren()) do
+			if (v504:IsA("BillboardGui") or v504:IsA("Highlight")) then
+				v504:Destroy();
+			end
+		end
+		local v422 = Instance.new("BillboardGui");
+		v422.Name = "PlayerESP";
+		v422.Parent = v420;
+		v422.Adornee = v420;
+		v422.Size = UDim2.new(5, 0 + 0, 1 + 0, 0 + 0);
+		v422.StudsOffset = Vector3.new(0 - 0, 7 - 4, 0 - 0);
+		v422.AlwaysOnTop = true;
+		local v429 = Instance.new("TextLabel");
+		v429.Parent = v422;
+		v429.Size = UDim2.new(1 + 0, 0 - 0, 1, 0);
+		v429.BackgroundTransparency = 1;
+		v429.TextSize = 768 - (239 + 514);
+		v429.TextColor3 = Color3.new(1, 1 + 0, 1330 - (797 + 532));
+		v429.Font = Enum.Font.Gotham;
+		v429.TextStrokeTransparency = 0;
+		v429.TextStrokeColor3 = Color3.new(0 + 0, 0 + 0, 0 - 0);
+		v429.RichText = true;
+		local v440 = Instance.new("BillboardGui");
+		v440.Name = "DistanceHoldingESP";
+		v440.Parent = v421;
+		v440.Adornee = v421;
+		v440.Size = UDim2.new(4, 0, 1202.8 - (373 + 829), 731 - (476 + 255));
+		v440.StudsOffset = Vector3.new(0, -(1133.5 - (369 + 761)), 0 + 0);
+		v440.AlwaysOnTop = true;
+		local v447 = Instance.new("TextLabel");
+		v447.Parent = v440;
+		v447.Size = UDim2.new(1 - 0, 0, 1 - 0, 238 - (64 + 174));
+		v447.BackgroundTransparency = 1 + 0;
+		v447.TextSize = 15;
+		v447.TextColor3 = Color3.new(1 - 0, 337 - (144 + 192), 217 - (42 + 174));
+		v447.Font = Enum.Font.Gotham;
+		v447.TextStrokeTransparency = 0 + 0;
+		v447.TextStrokeColor3 = Color3.new(0, 0, 0);
+		local v456 = Instance.new("Highlight");
+		v456.Parent = v419;
+		v456.Name = "HighlightESP";
+		v456.FillColor = Color3.fromRGB(255, 212 + 43, 109 + 146);
+		v456.OutlineColor = Color3.fromRGB(1759 - (363 + 1141), 1835 - (1183 + 397), 776 - 521);
+		v456.FillTransparency = 0.5 + 0;
+		v456.OutlineTransparency = 0.2 + 0;
+		task.spawn(function()
+			while v419 and v421 do
+				local v556 = v419:FindFirstChildOfClass("Humanoid");
+				if v556 then
+					local v617 = 1975 - (1913 + 62);
+					local v618;
+					local v619;
+					local v620;
+					local v621;
+					local v622;
+					local v623;
+					local v624;
+					local v625;
+					while true do
+						if (v617 == (2 + 1)) then
+							v624 = (v17.Holding and v23(v419)) or nil;
+							v625 = (v624 and ("[" .. v624 .. "]")) or "";
+							v447.Text = (v17.Distance and v17.Holding and (v623 .. " " .. v625)) or (v623 .. v625);
+							break;
+						end
+						if (v617 == (0 - 0)) then
+							v618 = math.floor((v556.Health / v556.MaxHealth) * (2033 - (565 + 1368)));
+							v619 = "rgb(0,255,0)";
+							if (v618 <= 70) then
+								v619 = "rgb(255,255,0)";
+							end
+							v617 = 3 - 2;
+						end
+						if (v617 == 2) then
+							v622 = (v17.Name and v17.Health and " | ") or "";
+							v429.Text = v620 .. v622 .. v621;
+							v623 = (v17.Distance and ("[" .. math.floor((v16.Character.HumanoidRootPart.Position - v421.Position).Magnitude) .. " Meters]")) or "";
+							v617 = 1664 - (1477 + 184);
+						end
+						if (v617 == (1 - 0)) then
+							if (v618 <= (28 + 2)) then
+								v619 = "rgb(255,0,0)";
+							end
+							v620 = (v17.Name and v186.Name) or "";
+							v621 = (v17.Health and ("<font color='" .. v619 .. "'>Health: " .. v618 .. "%</font>")) or "";
+							v617 = 858 - (564 + 292);
+						end
+					end
+				end
+				v422.Enabled = v17.Name or v17.Health;
+				v429.Visible = v17.Name or v17.Health;
+				v440.Enabled = v17.Distance or v17.Holding;
+				v456.Enabled = v17.Highlight;
+				task.wait(1);
+			end
+		end);
+	end
+	v187();
+	v186.CharacterAdded:Connect(function()
+		task.wait(1 - 0);
+		v187();
+	end);
+end
+for v188, v189 in pairs(v4:GetPlayers()) do
+	v24(v189);
+end
+v4.PlayerAdded:Connect(function(v190)
+	v190.CharacterAdded:Connect(function()
+		v24(v190);
+	end);
+end);
+local v15 = game:GetService("RunService");
+local v25 = game:GetService("UserInputService");
+local v4 = game:GetService("Players");
+local v26 = false;
+local v27 = 0.1 - 0;
+local v28 = "Head";
+local v29 = false;
+local v30 = false;
+local v31 = false;
+local v32 = false;
+local v33 = false;
+local v34 = 304.1 - (244 + 60);
+local v35 = nil;
+local v36 = false;
+local v37 = Drawing.new("Circle");
+v37.Visible = false;
+v37.Thickness = 1 + 0;
+v37.Transparency = 476.8 - (41 + 435);
+v37.Color = Color3.fromRGB(1256 - (938 + 63), 197 + 58, 1380 - (936 + 189));
+v37.Radius = 0 + 0;
+local function v43(v191)
+	if not v191.Character then
+		return false;
+	end
+	local v192 = v191.Character:FindFirstChild("Humanoid");
+	return v192 and (v192.Health > (1613 - (1565 + 48)));
+end
+local function v44(v193)
+	if (v29 and v193 and v193.Character) then
+		local v505 = 0;
+		local v506;
+		while true do
+			if (v505 == (0 + 0)) then
+				v506 = v193.Character:FindFirstChild("AimbotHighlight");
+				if not v506 then
+					local v697 = 1138 - (782 + 356);
+					while true do
+						if (v697 == (267 - (176 + 91))) then
+							v506 = Instance.new("Highlight", v193.Character);
+							v506.Name = "AimbotHighlight";
+							break;
+						end
+					end
+				end
+				v505 = 2 - 1;
+			end
+			if (v505 == (1 - 0)) then
+				v506.FillColor = Color3.fromRGB(255, 0, 1092 - (975 + 117));
+				v506.FillTransparency = 1875.7 - (157 + 1718);
+				v505 = 2 + 0;
+			end
+			if (v505 == 2) then
+				v506.OutlineColor = Color3.fromRGB(255, 0 - 0, 0);
+				v506.OutlineTransparency = 0 - 0;
+				break;
+			end
+		end
+	elseif (v193 and v193.Character) then
+		local v599 = v193.Character:FindFirstChild("AimbotHighlight");
+		if v599 then
+			v599:Destroy();
+		end
+	end
+end
+local function v45()
+	if (v35 and v35.Character) then
+		local v507 = 1018 - (697 + 321);
+		local v508;
+		while true do
+			if (v507 == (0 - 0)) then
+				v508 = v35.Character:FindFirstChild("AimbotHighlight");
+				if v508 then
+					v508:Destroy();
+				end
+				break;
+			end
+		end
+	end
+end
+local function v46(v194)
+	local v195 = 0 - 0;
+	local v196;
+	local v197;
+	local v198;
+	local v199;
+	local v200;
+	while true do
+		if (v195 == (2 - 1)) then
+			if not v196 then
+				return false;
+			end
+			v197 = workspace.CurrentCamera.CFrame.Position;
+			v195 = 1 + 1;
+		end
+		if (v195 == (6 - 2)) then
+			v200 = workspace:Raycast(v197, v198.Unit * v198.Magnitude, v199);
+			return v200 and v200.Instance:IsDescendantOf(v194.Character);
+		end
+		if (v195 == 3) then
+			v199.FilterDescendantsInstances = {workspace.CurrentCamera,v4.LocalPlayer.Character};
+			v199.FilterType = Enum.RaycastFilterType.Blacklist;
+			v195 = 1231 - (322 + 905);
+		end
+		if (v195 == (611 - (602 + 9))) then
+			if (not v194 or not v194.Character) then
+				return false;
+			end
+			v196 = v194.Character:FindFirstChild(v28);
+			v195 = 1190 - (449 + 740);
+		end
+		if (v195 == (874 - (826 + 46))) then
+			v198 = v196.Position - v197;
+			v199 = RaycastParams.new();
+			v195 = 3;
+		end
+	end
+end
+local function v47()
+	local v201 = math.huge;
+	local v202 = nil;
+	for v463, v464 in pairs(v4:GetPlayers()) do
+		if ((v464 ~= v4.LocalPlayer) and v464.Character and v464.Character:FindFirstChild(v28)) then
+			if ((not v31 or v43(v464)) and (not v32 or (v464.Team ~= v4.LocalPlayer.Team))) then
+				if (not v30 or v46(v464)) then
+					local v698 = 0;
+					local v699;
+					local v700;
+					while true do
+						if (v698 == (947 - (245 + 702))) then
+							v699, v700 = workspace.CurrentCamera:WorldToViewportPoint(v464.Character[v28].Position);
+							if v700 then
+								local v757 = v25:GetMouseLocation();
+								local v758 = (Vector2.new(v699.X, v699.Y) - v757).Magnitude;
+								if ((v758 < v201) and (v758 < v37.Radius)) then
+									v201 = v758;
+									v202 = v464;
+								end
+							end
+							break;
+						end
+					end
+				end
+			end
+		end
+	end
+	return v202;
+end
+local function v48(v203)
+	local v204 = 0 - 0;
+	while true do
+		if (v204 == (0 + 0)) then
+			if (v203 and v203.Character and v203.Character:FindFirstChild("HumanoidRootPart")) then
+				local v630 = 1898 - (260 + 1638);
+				local v631;
+				local v632;
+				local v633;
+				while true do
+					if (v630 == (440 - (382 + 58))) then
+						v631 = v203.Character.HumanoidRootPart.Velocity;
+						v632 = v203.Character[v28].Position;
+						v630 = 3 - 2;
+					end
+					if (v630 == 1) then
+						v633 = v632 + (v631 * v34);
+						return v633;
+					end
+				end
+			end
+			return nil;
+		end
+	end
+end
+local function v49()
+	if v26 then
+		v37.Position = v25:GetMouseLocation();
+		v37.Visible = true;
+	else
+		v37.Visible = false;
+	end
+end
+local function v50()
+	local v205 = 0 + 0;
+	while true do
+		if (v205 == (0 - 0)) then
+			if (not v26 or not v25:IsMouseButtonPressed(Enum.UserInputType.MouseButton2)) then
+				local v634 = 0;
+				while true do
+					if (v634 == (2 - 1)) then
+						v35 = nil;
+						return;
+					end
+					if (v634 == 0) then
+						v45();
+						v36 = false;
+						v634 = 1;
+					end
+				end
+			end
+			if not v36 then
+				v35 = v47();
+				v36 = v35 ~= nil;
+			end
+			v205 = 1;
+		end
+		if (v205 == (1206 - (902 + 303))) then
+			if (v29 and v35) then
+				v44(v35);
+			else
+				v45();
+			end
+			if (v36 and v35 and v35.Character and v35.Character:FindFirstChild(v28)) then
+				local v635 = v35.Character[v28];
+				local v636 = workspace.CurrentCamera;
+				if v33 then
+					local v701 = v48(v35);
+					v636.CFrame = v636.CFrame:Lerp(CFrame.new(v636.CFrame.Position, v701), v27);
+				else
+					v636.CFrame = v636.CFrame:Lerp(CFrame.new(v636.CFrame.Position, v635.Position), v27);
+				end
+			end
+			break;
+		end
+	end
+end
+v6.Combat:AddDropdown("SmoothingMode", {Title="Aimbots",Description="Choose between None, Legit, or Blatant",Values={"None","Legit","Blatant"},Multi=false,Default=(1 + 0),Callback=function(v206)
+	if (v206 == "None") then
+		local v512 = 0;
+		while true do
+			if (v512 == (1690 - (1121 + 569))) then
+				v26 = false;
+				v27 = 214 - (22 + 192);
+				v512 = 684 - (483 + 200);
+			end
+			if (v512 == 1) then
+				v37.Radius = 0;
+				v37.Visible = false;
+				break;
+			end
+		end
+	elseif (v206 == "Legit") then
+		local v600 = 0;
+		while true do
+			if (v600 == 0) then
+				v26 = true;
+				v27 = 0.07;
+				v600 = 1;
+			end
+			if (v600 == (1464 - (1404 + 59))) then
+				v37.Visible = true;
+				break;
+			end
+		end
+	elseif (v206 == "Blatant") then
+		v26 = true;
+		v27 = 2 - 1;
+		v37.Visible = true;
+	end
+end});
+v6.Combat:AddDropdown("AimbotParts", {Title="Aimbot Parts",Description="Choose which part to target",Values={"Head","Torso"},Multi=false,Default=(1 - 0),Callback=function(v207)
+	v28 = ((v207 == "Head") and "Head") or "HumanoidRootPart";
+end});
+v15.RenderStepped:Connect(function()
+	v49();
+	v50();
+end);
+v6.Combat:AddSlider("FOVRadiusSlider", {Title="FOV Radius",Description="Adjust the radius of the FOV ring",Default=(765 - (468 + 297)),Min=(562 - (334 + 228)),Max=(404 - 284),Rounding=(0 - 0),Callback=function(v208)
+	v37.Radius = v208;
+end});
+v6.Combat:AddToggle("PredictionToggle", {Title="Enable Prediction",Description="Enable predictive aiming for moving targets",Default=false,Callback=function(v210)
+	v33 = v210;
+end});
+v6.Combat:AddToggle("HighlightToggle", {Title="Highlight Aimbot",Description="Highlights the Aimboted Target",Default=false,Callback=function(v211)
+	local v212 = 0 - 0;
+	while true do
+		if (v212 == (0 + 0)) then
+			v29 = v211;
+			if not v29 then
+				v45();
+			end
+			break;
+		end
+	end
+end});
+v6.Combat:AddToggle("IgnoreDeadToggle", {Title="Ignore Dead",Description="Skip targeting dead players",Default=false,Callback=function(v213)
+	v31 = v213;
+end});
+v6.Combat:AddToggle("WallCheckToggle", {Title="Wall Check",Description="Aimbots only if Player Visible",Default=false,Callback=function(v214)
+	v30 = v214;
+end});
+v6.Combat:AddColorpicker("FOVColorPicker", {Title="FOV Ring Color",Description="Customize the color of the FOV ring",Default=v37.Color,Callback=function(v215)
+	v37.Color = v215;
+end});
+v15.RenderStepped:Connect(function()
+	v49();
+	v50();
+end);
+local v51 = game.Players.LocalPlayer;
+_G.HeadSize = 243 - (141 + 95);
+_G.Disabled = true;
+_G.HitboxColor = Color3.fromRGB(251 + 4, 656 - 401, 255);
+_G.HitboxTransparency = 0.7 - 0;
+local function v52(v217)
+	if (v217.Character and v217.Character:FindFirstChild("HumanoidRootPart")) then
+		pcall(function()
+			local v566 = 0;
+			while true do
+				if (2 == v566) then
+					v217.Character.HumanoidRootPart.CanCollide = false;
+					break;
+				end
+				if (v566 == (0 + 0)) then
+					v217.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize, _G.HeadSize, _G.HeadSize);
+					v217.Character.HumanoidRootPart.Transparency = math.clamp(_G.HitboxTransparency, 0.7 - 0, 0.95 + 0);
+					v566 = 1 + 0;
+				end
+				if (v566 == (1 - 0)) then
+					v217.Character.HumanoidRootPart.Color = _G.HitboxColor;
+					v217.Character.HumanoidRootPart.Material = "Neon";
+					v566 = 2 + 0;
+				end
+			end
+		end);
+	end
+end
+local function v53(v218)
+	if (v218.Character and v218.Character:FindFirstChild("HumanoidRootPart")) then
+		pcall(function()
+			local v567 = 163 - (92 + 71);
+			while true do
+				if (v567 == (0 + 0)) then
+					v218.Character.HumanoidRootPart.Size = Vector3.new(2 - 0, 767 - (574 + 191), 2 + 0);
+					if _G.Disabled then
+						v218.Character.HumanoidRootPart.Transparency = 1;
+					end
+					v567 = 1;
+				end
+				if (v567 == 1) then
+					v218.Character.HumanoidRootPart.Material = "SmoothPlastic";
+					v218.Character.HumanoidRootPart.CanCollide = true;
+					break;
+				end
+			end
+		end);
+	end
+end
+local function v54()
+	for v465, v466 in pairs(game:GetService("Players"):GetPlayers()) do
+		if (v466.Name ~= v51.Name) then
+			if (_G.Disabled or (v466.Character and v466.Character:FindFirstChild("Humanoid") and v466.Character.Humanoid.SeatPart)) then
+				v53(v466);
+			else
+				v52(v466);
+			end
+		end
+	end
+end
+local v55 = v6.Combat:AddToggle("MyToggle", {Title="HitBox",Description="Toggle HitBox",Default=false,Callback=function(v219)
+	local v220 = 0 - 0;
+	while true do
+		if (v220 == (0 + 0)) then
+			_G.Disabled = not v219;
+			v54();
+			break;
+		end
+	end
+end});
+local v56 = v6.Combat:AddSlider("HeadSizeSlider", {Title="Hitbox Size",Description="Adjust the size of the hitbox",Default=_G.HeadSize,Min=(850 - (254 + 595)),Max=(146 - (55 + 71)),Rounding=1,Callback=function(v221)
+	_G.HeadSize = v221;
+	v54();
+end});
+local v57 = v6.Combat:AddSlider("TransparencySlider", {Title="Transparency",Description="Adjust the transparency of the hitbox",Default=_G.HitboxTransparency,Min=(0.7 - 0),Max=(1790.95 - (573 + 1217)),Rounding=2,Callback=function(v222)
+	_G.HitboxTransparency = math.clamp(v222, 0.7 - 0, 0.95 + 0);
+	v54();
+end});
+local v58 = v6.Combat:AddColorpicker("HitboxColorpicker", {Title="Hitbox Color",Description="Select the hitbox color",Default=_G.HitboxColor});
+v58:OnChanged(function(v223)
+	local v224 = 0 - 0;
+	while true do
+		if (v224 == 0) then
+			_G.HitboxColor = v223;
+			v54();
+			break;
+		end
+	end
+end);
+v54();
+local function v59()
+	while true do
+		wait(1);
+		v54();
+	end
+end
+task.spawn(v59);
+v6.Combat:AddButton({Title="Infinite Yield",Description="Opens an Admin Pannel",Callback=function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))();
+end});
+v6.Combat:AddButton({Title="Btools",Description="Gives you a tool that allows you to delete objects",Callback=function()
+	local function v225()
+		local v467 = 939 - (714 + 225);
+		local v468;
+		local v469;
+		local v470;
+		while true do
+			if (v467 == (0 - 0)) then
+				v468 = 13 - 3;
+				v469 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+				v467 = 1 + 0;
+			end
+			if (v467 == (1 - 0)) then
+				v470 = "";
+				for v639 = 807 - (118 + 688), v468 do
+					v470 = v470 .. v469:sub(math.random(49 - (25 + 23), #v469), math.random(1, #v469));
+				end
+				v467 = 2;
+			end
+			if (v467 == 2) then
+				return v470;
+			end
+		end
+	end
+	for v471 = 1, 1 + 3 do
+		local v472 = Instance.new("HopperBin");
+		v472.BinType = v471;
+		v472.Name = v225();
+		v472.Parent = game.Players.LocalPlayer.Backpack;
+	end
+end});
+local v60 = game.Players.LocalPlayer;
+local v61 = game:GetService("UserInputService");
+local v62 = game:GetService("RunService");
+local v63 = {W=false,A=false,S=false,D=false};
+local v64 = 1891 - (927 + 959);
+local v65 = false;
+local v66 = false;
+local function v67()
+	if (v65 and v60.Character and v60.Character:FindFirstChild("HumanoidRootPart")) then
+		local v513 = v60.Character.HumanoidRootPart;
+		local v514 = workspace.CurrentCamera;
+		local v515 = Vector3.new(0 - 0, 732 - (16 + 716), 0);
+		if v63.W then
+			v515 = v515 + v514.CFrame.LookVector;
+		end
+		if v63.A then
+			v515 = v515 - v514.CFrame.RightVector;
+		end
+		if v63.S then
+			v515 = v515 - v514.CFrame.LookVector;
+		end
+		if v63.D then
+			v515 = v515 + v514.CFrame.RightVector;
+		end
+		if v61:IsKeyDown(Enum.KeyCode.Space) then
+			v515 = v515 + Vector3.new(0, 1 - 0, 97 - (11 + 86));
+		end
+		if v61:IsKeyDown(Enum.KeyCode.LeftControl) then
+			v515 = v515 - Vector3.new(0 - 0, 286 - (175 + 110), 0 - 0);
+		end
+		if (v515.Magnitude > (0 - 0)) then
+			v515 = v515.Unit * v64;
+			v513.Anchored = true;
+			for v640 = 1, 1801 - (503 + 1293) do
+				local v641 = 0 - 0;
+				while true do
+					if ((0 + 0) == v641) then
+						v513.CFrame = v513.CFrame:Lerp(v513.CFrame + v515, 1061.7 - (810 + 251));
+						task.wait(0.02);
+						break;
+					end
+				end
+			end
+			v513.Anchored = false;
+			v66 = false;
+		elseif not v66 then
+			v66 = true;
+			v513.Anchored = true;
+		end
+	end
+end
+v61.InputBegan:Connect(function(v226, v227)
+	if v227 then
+		return;
+	end
+	if (v226.KeyCode == Enum.KeyCode.W) then
+		v63.W = true;
+	end
+	if (v226.KeyCode == Enum.KeyCode.A) then
+		v63.A = true;
+	end
+	if (v226.KeyCode == Enum.KeyCode.S) then
+		v63.S = true;
+	end
+	if (v226.KeyCode == Enum.KeyCode.D) then
+		v63.D = true;
+	end
+end);
+v61.InputEnded:Connect(function(v228, v229)
+	if v229 then
+		return;
+	end
+	if (v228.KeyCode == Enum.KeyCode.W) then
+		v63.W = false;
+	end
+	if (v228.KeyCode == Enum.KeyCode.A) then
+		v63.A = false;
+	end
+	if (v228.KeyCode == Enum.KeyCode.S) then
+		v63.S = false;
+	end
+	if (v228.KeyCode == Enum.KeyCode.D) then
+		v63.D = false;
+	end
+end);
+v62.RenderStepped:Connect(v67);
+v6.Player:AddToggle("FlyToggle", {Title="Enable Fly [Bypassed]",Description="Toggle to enable or disable flying",Default=false,Callback=function(v230)
+	v65 = v230;
+	if not v230 then
+		local v524 = 0 + 0;
+		local v525;
+		while true do
+			if (v524 == 0) then
+				v525 = v60.Character and v60.Character:FindFirstChild("HumanoidRootPart");
+				if v525 then
+					v525.Anchored = false;
+				end
+				break;
+			end
+		end
+	end
+end});
+v6.Player:AddSlider("FlySpeedSlider", {Title="Adjust the speed of flying",Description="Adjust how fast you 'teleport' while flying.",Default=v64,Min=1,Max=10,Rounding=1,Callback=function(v231)
+	v64 = v231;
+end});
+local v51 = game.Players.LocalPlayer;
+local v68 = v51.Character or v51.CharacterAdded:Wait();
+local v69 = v68:WaitForChild("Humanoid");
+local v70 = Vector3.new(-(119.9579 + 268), 307.3467 + 33, -(1091.864 - (43 + 490)));
+local v71 = false;
+local v72;
+local function v73(v232)
+	if (v71 and (v232 < v69.MaxHealth)) then
+		local v526 = 733 - (711 + 22);
+		local v527;
+		while true do
+			if (v526 == 0) then
+				v527 = v68:FindFirstChild("HumanoidRootPart");
+				if v527 then
+					v527.CFrame = CFrame.new(v70);
+				end
+				break;
+			end
+		end
+	end
+end
+local v55 = v6.Player:AddToggle("MyToggle", {Title="Teleport on Damage",Description="Automatically teleports when taking damage",Default=false,Callback=function(v233)
+	v71 = v233;
+	if v71 then
+		if not v72 then
+			v72 = v69.HealthChanged:Connect(v73);
+		end
+	elseif v72 then
+		v72:Disconnect();
+		v72 = nil;
+	end
+end});
+local v74 = game:GetService("Players");
+local v75 = game:GetService("ReplicatedStorage");
+local v16 = v74.LocalPlayer;
+local v76 = v16.Character and v16.Character:FindFirstChildOfClass("Humanoid");
+getgenv().GodMode = false;
+getgenv().FreeFall = false;
+local v79 = (v76 and v76.Health) or (386 - 286);
+local function v80()
+	if v76 then
+		v76.HealthChanged:Connect(function(v568)
+			local v569 = 0;
+			while true do
+				if ((859 - (240 + 619)) == v569) then
+					if (v568 < v79) then
+						local v719 = 0 + 0;
+						local v720;
+						while true do
+							if (v719 == 0) then
+								v720 = tick() + (7 - 2);
+								while tick() < v720 do
+									local v759 = 0 + 0;
+									while true do
+										if (v759 == (1744 - (1344 + 400))) then
+											getgenv().FreeFall = true;
+											task.wait(405 - (255 + 150));
+											break;
+										end
+									end
+								end
+								v719 = 1;
+							end
+							if (v719 == (1 + 0)) then
+								getgenv().FreeFall = false;
+								break;
+							end
+						end
+					end
+					v79 = v568;
+					break;
+				end
+			end
+		end);
+	end
+end
+task.spawn(function()
+	while task.wait() do
+		if (getgenv().FreeFall and v76) then
+			v76:ChangeState(Enum.HumanoidStateType.Freefall);
+		end
+	end
+end);
+local v55 = v6.Player:AddToggle("GodModeToggle", {Title="God Mode",Description="Enables God Mode",Default=false,Callback=function(v234)
+	local v235 = 0 + 0;
+	local v236;
+	while true do
+		if (0 == v235) then
+			getgenv().GodMode = v234;
+			v236 = game.Workspace.CurrentCamera;
+			v235 = 4 - 3;
+		end
+		if (v235 == (3 - 2)) then
+			if v236 then
+				v236.CameraType = Enum.CameraType.Custom;
+			end
+			if getgenv().GodMode then
+				local v644 = 1739 - (404 + 1335);
+				while true do
+					if ((406 - (183 + 223)) == v644) then
+						task.spawn(function()
+							while getgenv().GodMode do
+								local v743 = -(9000000000 - 0);
+								pcall(function()
+									local v748 = 0 + 0;
+									while true do
+										if (v748 == 0) then
+											v75.FSpamRemote:FireServer();
+											v75.DamagePlayer:InvokeServer(v743);
+											break;
+										end
+									end
+								end);
+								task.wait();
+							end
+						end);
+						if v76 then
+							v80();
+						end
+						break;
+					end
+				end
+			else
+				getgenv().FreeFall = false;
+			end
+			break;
+		end
+	end
+end});
+local v4 = game:GetService("Players");
+local v16 = v4.LocalPlayer;
+local v15 = game:GetService("RunService");
+local v81 = v16.Character or v16.CharacterAdded:Wait();
+local v82 = nil;
+local v83 = false;
+local function v84(v237)
+	local v238 = 0;
+	while true do
+		if (v238 == (0 + 0)) then
+			v83 = not v237;
+			if v237 then
+				v82 = v15.Stepped:Connect(function()
+					if ((v83 == false) and (v16.Character ~= nil)) then
+						for v732, v733 in pairs(v16.Character:GetDescendants()) do
+							if (v733:IsA("BasePart") and (v733.CanCollide == true)) then
+								v733.CanCollide = false;
+							end
+						end
+					end
+				end);
+			else
+				local v646 = 337 - (10 + 327);
+				while true do
+					if (v646 == (0 + 0)) then
+						if v82 then
+							local v744 = 338 - (118 + 220);
+							while true do
+								if (v744 == (0 + 0)) then
+									v82:Disconnect();
+									v82 = nil;
+									break;
+								end
+							end
+						end
+						if v16.Character then
+							for v750, v751 in pairs(v16.Character:GetDescendants()) do
+								if v751:IsA("BasePart") then
+									v751.CanCollide = true;
+								end
+							end
+						end
+						break;
+					end
+				end
+			end
+			break;
+		end
+	end
+end
+local v55 = v6.Player:AddToggle("NoclipToggle", {Title="Noclip",Description="Toggle Noclip",Default=false,Callback=function(v239)
+	v84(v239);
+end});
+local v4 = game:GetService("Players");
+local v16 = v4.LocalPlayer;
+local v25 = game:GetService("UserInputService");
+local v85;
+local v86 = false;
+local v87 = false;
+local function v88(v240)
+	if v240 then
+		local v528 = 0;
+		while true do
+			if ((449 - (108 + 341)) == v528) then
+				if v85 then
+					v85:Disconnect();
+				end
+				v86 = false;
+				v528 = 1;
+			end
+			if (v528 == (1 + 0)) then
+				v85 = v25.JumpRequest:Connect(function()
+					if not v86 then
+						v86 = true;
+						v16.Character:FindFirstChildWhichIsA("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping);
+						wait();
+						v86 = false;
+					end
+				end);
+				break;
+			end
+		end
+	else
+		local v529 = 0;
+		while true do
+			if (v529 == 0) then
+				if v85 then
+					v85:Disconnect();
+				end
+				v86 = false;
+				break;
+			end
+		end
+	end
+end
+local function v89(v241, v242)
+	if (not v242 and (v241.UserInputType == Enum.UserInputType.Keyboard)) then
+		if (v241.KeyCode == Enum.KeyCode.Backspace) then
+			local v602 = 0;
+			while true do
+				if (v602 == (0 - 0)) then
+					v87 = true;
+					while v87 do
+						local v721 = 1493 - (711 + 782);
+						while true do
+							if (v721 == (0 - 0)) then
+								if v16.Character then
+									v16.Character:FindFirstChildWhichIsA("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping);
+								end
+								wait(0.1);
+								break;
+							end
+						end
+					end
+					break;
+				end
+			end
+		end
+	end
+end
+local function v90(v243, v244)
+	if ((v243.UserInputType == Enum.UserInputType.Keyboard) and (v243.KeyCode == Enum.KeyCode.Backspace)) then
+		v87 = false;
+	end
+end
+v25.InputBegan:Connect(v89);
+v25.InputEnded:Connect(v90);
+local v55 = v6.Player:AddToggle("InfJumpToggle", {Title="Infinite Jump",Description="Toggle infinite jump",Default=false,Callback=function(v245)
+	v88(v245);
+end});
+local v9 = v6.Player:AddSection("GUI");
+v6.Player:AddButton({Title="Bronx Market",Description="Opens The Bronx Market",Callback=function()
+	local v246 = 469 - (270 + 199);
+	local v247;
+	local v248;
+	local v249;
+	while true do
+		if (v246 == (0 + 0)) then
+			v247 = game.Players.LocalPlayer;
+			v248 = v247:WaitForChild("PlayerGui");
+			v246 = 1820 - (580 + 1239);
+		end
+		if (v246 == (2 - 1)) then
+			v249 = v248:WaitForChild("Bronx Market 2", 5 + 0);
+			if v249 then
+				v249.Enabled = true;
+			else
+				warn("Bronx Market 2 GUI element not found!");
+			end
+			break;
+		end
+	end
+end});
+local v51 = game.Players.LocalPlayer;
+local v91 = v51:WaitForChild("PlayerGui");
+local v92 = v91:WaitForChild("Bronx Market 2", 1 + 4);
+if v92 then
+	v92.Enabled = false;
+else
+	warn("Bronx Market 2 GUI element not found!");
+end
+v6.Player:AddButton({Title="Bronx Clothing",Description="Opens The Bronx Clothing",Callback=function()
+	local v250, v251 = pcall(function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/DracoSwagBaby/ScriptsBanger/refs/heads/main/Bronx%20DripShop%20Script"))();
+	end);
+	if not v250 then
+		warn("Failed to load Bronx Clothing script:", v251);
+	else
+	end
+end});
+local v93 = {};
+local v94 = nil;
+local v95 = false;
+local v96 = false;
+getgenv().FreeFallMethod = false;
+local function v98()
+	local v252 = 0;
+	while true do
+		if (v252 == 0) then
+			if Dropdown then
+				Dropdown:Destroy();
+			end
+			Dropdown = v6.Others:AddDropdown("PlayerDropdown", {Title="Select Player",Values=v93,Multi=false,Default=(1 + 0),Callback=function(v603)
+				v94 = v603;
+			end});
+			break;
+		end
+	end
+end
+local function v99()
+	v93 = {};
+	for v478, v479 in pairs(game.Players:GetPlayers()) do
+		if (v479 ~= game.Players.LocalPlayer) then
+			table.insert(v93, v479.Name);
+		end
+	end
+	v98();
+end
+local function v100()
+	local v253 = game.Players.LocalPlayer:FindFirstChild("PlayerGui");
+	if not v253 then
+		return;
+	end
+	local v254 = Instance.new("ScreenGui");
+	v254.Name = "TeleportBlackout";
+	v254.Parent = v253;
+	local v257 = Instance.new("Frame");
+	v257.Size = UDim2.new(2 - 1, 0 + 0, 1168 - (645 + 522), 1790 - (1010 + 780));
+	v257.Position = UDim2.new(0, 0, 0 + 0, 0 - 0);
+	v257.BackgroundColor3 = Color3.new(0 - 0, 1836 - (1045 + 791), 0 - 0);
+	v257.BackgroundTransparency = 0;
+	v257.Parent = v254;
+	local v263 = Instance.new("TextLabel");
+	v263.Size = UDim2.new(0.6, 0 - 0, 505.2 - (351 + 154), 0);
+	v263.Position = UDim2.new(1574.2 - (1281 + 293), 0, 0.55, 266 - (28 + 238));
+	v263.Text = "Unforgiven Hub";
+	v263.TextColor3 = Color3.new(1, 1, 2 - 1);
+	v263.TextScaled = true;
+	v263.BackgroundTransparency = 1560 - (1381 + 178);
+	v263.Font = Enum.Font.SourceSansBold;
+	v263.Parent = v257;
+	local v273 = Instance.new("ImageLabel");
+	v273.Size = UDim2.new(0.3 + 0, 0 + 0, 0.5 + 0, 0 - 0);
+	v273.Position = UDim2.new(0.35, 0, 0.15 + 0, 0);
+	v273.Image = "";
+	v273.BackgroundTransparency = 471 - (381 + 89);
+	v273.Parent = v257;
+	task.spawn(function()
+		for v530 = 0, 320 + 40, 4 + 1 do
+			if not v254.Parent then
+				break;
+			end
+			v273.Rotation = v530;
+			task.wait(0.02 - 0);
+		end
+	end);
+	task.delay(1157.5 - (1074 + 82), function()
+		if v254 then
+			v254:Destroy();
+		end
+	end);
+end
+local function v101(v279)
+	local v280 = 0 - 0;
+	local v281;
+	while true do
+		if (v280 == (1784 - (214 + 1570))) then
+			v281 = game.Players:FindFirstChild(v279);
+			if (v281 and v281:FindFirstChild("Backpack")) then
+				local v648 = {};
+				for v683, v684 in pairs(v281.Backpack:GetChildren()) do
+					if v684:IsA("Tool") then
+						table.insert(v648, v684.Name);
+					end
+				end
+				return v648;
+			end
+			v280 = 1456 - (990 + 465);
+		end
+		if (v280 == (1 + 0)) then
+			return nil;
+		end
+	end
+end
+task.spawn(function()
+	while task.wait() do
+		if getgenv().FreeFallMethod then
+			local v573 = 0;
+			local v574;
+			while true do
+				if (v573 == 0) then
+					v574 = game:GetService("Players").LocalPlayer;
+					if (v574 and v574.Character and v574.Character:FindFirstChild("Humanoid")) then
+						local v722 = v574.Character.Humanoid;
+						v722:ChangeState(Enum.HumanoidStateType.Freefall);
+					end
+					break;
+				end
+			end
+		end
+	end
+end);
+v6.Others:AddButton({Title="Refresh Player List",Description="Refreshes the list of active players",Callback=function()
+	v99();
+end});
+v6.Others:AddToggle("SpectateToggle", {Title="Spectate",Description="Spectates the selected player",Default=false,Callback=function(v282)
+	local v283 = 0 + 0;
+	while true do
+		if (v283 == (0 + 0)) then
+			v95 = v282;
+			if (v95 and v94) then
+				local v649 = 0 - 0;
+				local v650;
+				while true do
+					if (v649 == (1726 - (1668 + 58))) then
+						v650 = game.Players:FindFirstChild(v94);
+						if (v650 and v650.Character) then
+							local v745 = 626 - (512 + 114);
+							local v746;
+							while true do
+								if (v745 == (0 - 0)) then
+									v746 = v650.Character:FindFirstChild("Humanoid");
+									if v746 then
+										game.Workspace.CurrentCamera.CameraSubject = v746;
+									else
+										warn("Unable to spectate. Player has no humanoid.");
+									end
+									break;
+								end
+							end
+						else
+							warn("Invalid player selection for spectate.");
+						end
+						break;
+					end
+				end
+			else
+				game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character:FindFirstChild("Humanoid");
+			end
+			break;
+		end
+	end
+end});
+v6.Others:AddToggle("LoopBringToggle", {Title="LoopBring Player",Description="Continuously brings the selected player to you",Default=false,Callback=function(v284)
+	v96 = v284;
+	if (v96 and v94) then
+		local v532 = 0 - 0;
+		local v533;
+		while true do
+			if (v532 == 0) then
+				v533 = game.Players:FindFirstChild(v94);
+				if (v533 and v533.Character) then
+					coroutine.wrap(function()
+						while v96 do
+							local v734 = 0;
+							local v735;
+							local v736;
+							while true do
+								if (v734 == (0 - 0)) then
+									v735 = v533.Character:FindFirstChild("HumanoidRootPart");
+									v736 = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart");
+									v734 = 1 + 0;
+								end
+								if (v734 == (1 + 0)) then
+									if (v735 and v736) then
+										v735.CFrame = v736.CFrame + Vector3.new(0, 0, 4 + 0);
+									end
+									wait(0);
+									break;
+								end
+							end
+						end
+					end)();
+				else
+					warn("Invalid player selection for LoopBring.");
+				end
+				break;
+			end
+		end
+	end
+end});
+v6.Others:AddButton({Title="View Inventory",Description="Displays the selected player's inventory",Callback=function()
+	if v94 then
+		local v534 = 0 - 0;
+		local v535;
+		while true do
+			if (v534 == 0) then
+				v535 = v101(v94);
+				if (v535 and (#v535 > (1994 - (109 + 1885)))) then
+					v0:Notify({Title="View Inventory",Content=table.concat(v535, ", "),Duration=5});
+				else
+					v0:Notify({Title="View Inventory",Content="No items found.",SubContent=(v94 .. " has no tools in their backpack."),Duration=(1474 - (1269 + 200))});
+				end
+				break;
+			end
+		end
+	else
+		v0:Notify({Title="Error",Content="No player selected!",Duration=(5 - 2)});
+	end
+end});
+v6.Others:AddButton({Title="Teleport to Player",Description="Teleports to the selected player with Freefall effect and blackout screen",Callback=function()
+	if v94 then
+		local v536 = game.Players:FindFirstChild(v94);
+		if (v536 and v536.Character) then
+			local v604 = 0;
+			local v605;
+			local v606;
+			while true do
+				if (v604 == (816 - (98 + 717))) then
+					if (v605 and v606) then
+						getgenv().FreeFallMethod = true;
+						v100();
+						v606.CFrame = v605.CFrame + Vector3.new(826 - (802 + 24), 86 - 36, 0);
+						task.wait(0.8 - 0);
+						v606.CFrame = v605.CFrame;
+						getgenv().FreeFallMethod = false;
+					else
+						warn("Player found, but no HumanoidRootPart detected.");
+					end
+					break;
+				end
+				if (v604 == (0 + 0)) then
+					v605 = v536.Character:FindFirstChild("HumanoidRootPart");
+					v606 = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart");
+					v604 = 1;
+				end
+			end
+		else
+			warn("Invalid player selection for teleport.");
+		end
+	else
+		warn("No player selected for teleport.");
+	end
+end});
+local v102 = false;
+local v103 = Vector3.new(-114.37491607666016, 459.09527587890625, -521.2562866210938);
+v6.Others:AddToggle("LoopTeleportToggle", {Title="LoopTeleport [SINGLE KILL]",Description="Repeatedly teleports the selected player to specific coordinates",Default=false,Callback=function(v285)
+	local v286 = 0 + 0;
+	while true do
+		if (v286 == (0 + 0)) then
+			v102 = v285;
+			if (v102 and v94) then
+				local v652 = 0;
+				local v653;
+				while true do
+					if (v652 == (0 + 0)) then
+						v653 = game.Players:FindFirstChild(v94);
+						if (v653 and v653.Character) then
+							coroutine.wrap(function()
+								while v102 do
+									local v760 = v653.Character:FindFirstChild("HumanoidRootPart");
+									if v760 then
+										v760.CFrame = CFrame.new(v103);
+									end
+									wait(0.1 - 0);
+								end
+							end)();
+						else
+							warn("Player not valid for loop teleport.");
+						end
+						break;
+					end
+				end
+			end
+			break;
+		end
+	end
+end});
+local v4 = game:GetService("Players");
+local v16 = v4.LocalPlayer;
+local v104 = game:GetService("Workspace");
+local v105 = game:GetService("UserInputService");
+local v106 = false;
+local function v107(v287)
+	for v480, v481 in pairs(v104:GetDescendants()) do
+		if (v481:IsA("BasePart") and not v481.Anchored and not v481:IsDescendantOf(v16.Character)) then
+			local v575 = v481:FindFirstChildOfClass("BodyPosition") or Instance.new("BodyPosition", v481);
+			v575.MaxForce = Vector3.new(math.huge, math.huge, math.huge);
+			v575.Position = v287;
+		end
+	end
+end
+local v108 = false;
+v105.InputBegan:Connect(function(v288, v289)
+	local v290 = 0;
+	while true do
+		if (v290 == (0 - 0)) then
+			if v289 then
+				return;
+			end
+			if (v288.UserInputType == Enum.UserInputType.MouseButton1) then
+				if v106 then
+					local v707 = 0 + 0;
+					while true do
+						if (v707 == (0 + 0)) then
+							v108 = true;
+							while v108 do
+								local v752 = v16:GetMouse();
+								local v753 = v752.Hit.p;
+								v107(v753);
+								wait(0.1 + 0);
+							end
+							break;
+						end
+					end
+				end
+			end
+			break;
+		end
+	end
+end);
+v105.InputEnded:Connect(function(v291)
+	if (v291.UserInputType == Enum.UserInputType.MouseButton1) then
+		v108 = false;
+	end
+end);
+local v55 = v6.Troll:AddToggle("MyToggle", {Title="Drag Objects",Description="By holding the click and moving the mouse, you can drag the items",Default=false,Callback=function(v292)
+	local v293 = 0 + 0;
+	while true do
+		if (v293 == (0 + 0)) then
+			v106 = v292;
+			if v292 then
+			else
+			end
+			break;
+		end
+	end
+end});
+local v109 = v6.Troll:AddToggle("Annoy Server", {Title="Annoy Server",Default=false,Description="Sends repeated tweet messages to annoy people in the server"});
+v109:OnChanged(function()
+	while v109.Value do
+		game:GetService("ReplicatedStorage"):WaitForChild("Resources"):WaitForChild("#Phone"):WaitForChild("Main"):FireServer("Tweet", {"CreateTweet","....................................................................."});
+		wait(1.4);
+	end
+end);
+local v9 = v6.Troll:AddSection("Anonymous");
+local v4 = game:GetService("Players");
+local v16 = v4.LocalPlayer;
+local v104 = game:GetService("Workspace");
+local v105 = game:GetService("UserInputService");
+local v70 = Vector3.new(-(553.3749160766602 - 439), 459.09527587890625, -521.2562866210938);
+local v106 = false;
+local function v107()
+	for v482, v483 in pairs(v104:GetDescendants()) do
+		if (v483:IsA("BasePart") and not v483.Anchored and not v483:IsDescendantOf(v16.Character)) then
+			local v578 = 1619 - (1427 + 192);
+			local v579;
+			while true do
+				if (v578 == (1 + 0)) then
+					v579.Position = v70;
+					break;
+				end
+				if (v578 == (0 - 0)) then
+					v579 = v483:FindFirstChildOfClass("BodyPosition") or Instance.new("BodyPosition", v483);
+					v579.MaxForce = Vector3.new(math.huge, math.huge, math.huge);
+					v578 = 1 + 0;
+				end
+			end
+		end
+	end
+end
+v105.InputBegan:Connect(function(v294, v295)
+	local v296 = 0 + 0;
+	while true do
+		if (v296 == (326 - (192 + 134))) then
+			if v295 then
+				return;
+			end
+			if (v294.UserInputType == Enum.UserInputType.MouseButton1) then
+				if v106 then
+					v107();
+				end
+			end
+			break;
+		end
+	end
+end);
+local v55 = v6.Troll:AddToggle("MyToggle", {Title="Teleport Car",Description="Teleports the Car to a Special location.",Default=false,Callback=function(v297)
+	v106 = v297;
+end});
+local v4 = game:GetService("Players");
+local v51 = v4.LocalPlayer;
+local v110 = workspace:FindFirstChild("Storage");
+local v71 = false;
+getgenv().FreeFallMethod = false;
+local v111 = nil;
+local function v112(v298)
+	local v299 = v51.Character or v51.CharacterAdded:Wait();
+	local v300 = v299 and v299:FindFirstChild("HumanoidRootPart");
+	if v300 then
+		v300.CFrame = CFrame.new(v298, v298 + Vector3.new(0, 1276 - (316 + 960), -1));
+	end
+end
+local function v113()
+	if not v110 then
+		return;
+	end
+	local v301 = v51.Character or v51.CharacterAdded:Wait();
+	local v302 = v301 and v301:FindFirstChild("HumanoidRootPart");
+	if not v302 then
+		return;
+	end
+	if not v111 then
+		v111 = v302.Position;
+	end
+	local v303 = 0 + 0;
+	for v484, v485 in ipairs(v110:GetChildren()) do
+		if (v485:IsA("MeshPart") and (v485.Name == "Baggy")) then
+			local v580 = 0 + 0;
+			local v581;
+			while true do
+				if (v580 == 2) then
+					if (v581 and v581:IsA("ProximityPrompt")) then
+						v581:InputHoldBegin();
+						task.wait(0.1);
+						v581:InputHoldEnd();
+					end
+					v303 = v303 + 1 + 0;
+					v580 = 11 - 8;
+				end
+				if (v580 == 0) then
+					getgenv().FreeFallMethod = true;
+					v112(v485.Position + Vector3.new(0, 3, 551 - (83 + 468)));
+					v580 = 1807 - (1202 + 604);
+				end
+				if (v580 == (4 - 3)) then
+					task.wait(0.2 - 0);
+					v581 = v485:FindFirstChild("stealprompt");
+					v580 = 5 - 3;
+				end
+				if (v580 == (328 - (45 + 280))) then
+					task.wait(0.3 + 0);
+					break;
+				end
+			end
+		end
+	end
+	if ((v303 == 0) and v111) then
+		v112(v111);
+		v111 = nil;
+	end
+	getgenv().FreeFallMethod = false;
+end
+local function v114()
+	local v305 = 0 + 0;
+	local v306;
+	while true do
+		if ((1 + 1) == v305) then
+			if v306 then
+				v113();
+			elseif v111 then
+				v112(v111);
+				v111 = nil;
+			end
+			break;
+		end
+		if (v305 == (0 + 0)) then
+			if not v71 then
+				return;
+			end
+			v306 = false;
+			v305 = 1;
+		end
+		if ((1 + 0) == v305) then
+			if v110 then
+				for v689, v690 in ipairs(v110:GetChildren()) do
+					if (v690:IsA("MeshPart") and (v690.Name == "Baggy")) then
+						v306 = true;
+						break;
+					end
+				end
+			end
+			getgenv().FreeFallMethod = v306;
+			v305 = 3 - 1;
+		end
+	end
+end
+local function v115()
+	while v71 do
+		v114();
+		task.wait(1912 - (340 + 1571));
+	end
+end
+local v55 = v6.PickUp:AddToggle("MyToggle", {Title="Pick Up Dead Player LootBags [GAMEPASS]",Description="Enables automatic teleportation when loot bags are found.",Default=false,Callback=function(v307)
+	v71 = v307;
+	if v71 then
+		spawn(v115);
+	end
+end});
+task.spawn(function()
+	while task.wait() do
+		local v486 = 0 + 0;
+		local v487;
+		while true do
+			if (v486 == (1772 - (1733 + 39))) then
+				v487 = game:GetService("Players").LocalPlayer;
+				if (getgenv().FreeFallMethod and v487 and v487.Character and v487.Character:FindFirstChild("Humanoid")) then
+					v487.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Freefall);
+				end
+				break;
+			end
+		end
+	end
+end);
+local function v116()
+	for v488, v489 in ipairs(game:GetService("Workspace"):GetDescendants()) do
+		if v489:IsA("ProximityPrompt") then
+			v489.HoldDuration = 0 - 0;
+		end
+	end
+end
+v116();
+local v4 = game:GetService("Players");
+local v117 = v4.LocalPlayer;
+local v110 = workspace:FindFirstChild("Dollas");
+local v71 = false;
+getgenv().FreeFallMethod = false;
+local function v112(v308)
+	local v309 = 0;
+	local v310;
+	local v311;
+	while true do
+		if (v309 == (1035 - (125 + 909))) then
+			if v311 then
+				v311.CFrame = CFrame.new(v308, v308 + Vector3.new(1948 - (1096 + 852), 0, -1));
+			end
+			break;
+		end
+		if (v309 == 0) then
+			v310 = v117.Character or v117.CharacterAdded:Wait();
+			v311 = v310 and v310:FindFirstChild("HumanoidRootPart");
+			v309 = 1;
+		end
+	end
+end
+local function v118()
+	if not v110 then
+		return;
+	end
+	local v312 = v117.Character or v117.CharacterAdded:Wait();
+	local v313 = v312 and v312:FindFirstChild("HumanoidRootPart");
+	if not v313 then
+		return;
+	end
+	for v490, v491 in ipairs(v110:GetChildren()) do
+		if (v491:IsA("Part") and ((v491.Name == "Money") or (v491.Name == "DeadMoney"))) then
+			getgenv().FreeFallMethod = true;
+			v112(v491.Position + Vector3.new(0 + 0, 3 - 0, 0));
+			task.wait(0.2 + 0);
+			local v585 = v491:FindFirstChild("ProximityPrompt");
+			if (v585 and v585:IsA("ProximityPrompt")) then
+				local v655 = 0;
+				while true do
+					if (v655 == (512 - (409 + 103))) then
+						v585:InputHoldBegin();
+						task.wait(236.1 - (46 + 190));
+						v655 = 96 - (51 + 44);
+					end
+					if (v655 == (1 + 0)) then
+						v585:InputHoldEnd();
+						break;
+					end
+				end
+			end
+			task.wait(1317.3 - (1114 + 203));
+		end
+	end
+	getgenv().FreeFallMethod = false;
+end
+local function v114()
+	if not v71 then
+		return;
+	end
+	local v315 = false;
+	if v110 then
+		for v586, v587 in ipairs(v110:GetChildren()) do
+			if (v587:IsA("Part") and ((v587.Name == "Money") or (v587.Name == "DeadMoney"))) then
+				v315 = true;
+				break;
+			end
+		end
+	end
+	getgenv().FreeFallMethod = v315;
+	if v315 then
+		v118();
+	end
+end
+local function v119()
+	while v71 do
+		v114();
+		task.wait(727 - (228 + 498));
+	end
+end
+local v55 = v6.PickUp:AddToggle("MyToggle", {Title="Pick Up Dropped Money",Description="Enables automatic teleportation when money is found.",Default=false,Callback=function(v317)
+	local v318 = 0 + 0;
+	while true do
+		if ((0 + 0) == v318) then
+			v71 = v317;
+			if v71 then
+				spawn(v119);
+			end
+			break;
+		end
+	end
+end});
+task.spawn(function()
+	while task.wait() do
+		local v492 = game:GetService("Players").LocalPlayer;
+		if (FreeFallMethod and v492 and v492.Character and v492.Character:FindFirstChild("Humanoid")) then
+			v492.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Freefall);
+		end
+	end
+end);
+local v15 = game:GetService("RunService");
+local v4 = game:GetService("Players");
+local v117 = v4.LocalPlayer;
+local v120 = workspace.CurrentCamera;
+local v104 = game:GetService("Workspace");
+local v121 = v120.CameraType;
+local v122 = v120.CameraSubject;
+local v123 = v117.CameraMode;
+local v124 = v120.CFrame;
+local v125 = nil;
+local v126 = false;
+local v127 = false;
+local v128 = nil;
+local v129 = false;
+local function v130(v319)
+	local v320 = 663 - (174 + 489);
+	local v321;
+	while true do
+		if (v320 == (0 - 0)) then
+			v321 = v104:FindFirstChild("StudioPay");
+			if v321 then
+				local v656 = 0;
+				local v657;
+				while true do
+					if (0 == v656) then
+						v657 = v321:FindFirstChild("Money");
+						if v657 then
+							for v754, v755 in ipairs(v657:GetChildren()) do
+								local v756 = v755:FindFirstChild("StudioMoney1");
+								if v756 then
+									local v762 = v756:FindFirstChild("Prompt");
+									if (v762 and v762:IsA("ProximityPrompt")) then
+										v762.Enabled = v319;
+										if v319 then
+											v762.HoldDuration = 0;
+										end
+									end
+								end
+							end
+						end
+						break;
+					end
+				end
+			end
+			break;
+		end
+	end
+end
+local function v131()
+	if v125 then
+		v125:Disconnect();
+		v125 = nil;
+	end
+	v120.CameraType = Enum.CameraType.Custom;
+	v117.CameraMode = v123;
+	v120.CameraSubject = (v117.Character and v117.Character:FindFirstChild("Humanoid")) or v122;
+	v130(false);
+	task.wait(1905.1 - (830 + 1075));
+	v120.CFrame = v124;
+end
+local function v132()
+	local v327 = 0;
+	local v328;
+	local v329;
+	while true do
+		if (v327 == (524 - (303 + 221))) then
+			v328 = v117.Character or v117.CharacterAdded:Wait();
+			v329 = v328:WaitForChild("HumanoidRootPart");
+			v327 = 1;
+		end
+		if (v327 == (1270 - (231 + 1038))) then
+			v120.CameraType = Enum.CameraType.Scriptable;
+			v125 = v15.RenderStepped:Connect(function()
+				if v329 then
+					local v691 = v329.Position + Vector3.new(0 + 0, 3, 1162 - (171 + 991));
+					v120.CFrame = CFrame.new(v691, v329.Position);
+				end
+			end);
+			break;
+		end
+	end
+end
+local function v133()
+	if not v126 then
+		return;
+	end
+	local v330 = v104:FindFirstChild("StudioPay");
+	if v330 then
+		local v539 = 0 - 0;
+		local v540;
+		while true do
+			if (v539 == 0) then
+				v540 = v330:FindFirstChild("Money");
+				if v540 then
+					for v723, v724 in ipairs(v540:GetChildren()) do
+						local v725 = 0;
+						local v726;
+						while true do
+							if (v725 == 0) then
+								v726 = v724:FindFirstChild("StudioMoney1");
+								if v726 then
+									local v763 = v726:FindFirstChild("Prompt");
+									if (v763 and v763:IsA("ProximityPrompt") and v763.Enabled) then
+										for v771 = 0 - 0, 20 do
+											local v772 = 0;
+											while true do
+												if (v772 == 0) then
+													v763:InputHoldBegin();
+													task.wait(0 - 0);
+													v772 = 1 + 0;
+												end
+												if (v772 == (3 - 2)) then
+													v763:InputHoldEnd();
+													break;
+												end
+											end
+										end
+									end
+								end
+								break;
+							end
+						end
+					end
+				end
+				break;
+			end
+		end
+	end
+end
+local v134 = {{position=Vector3.new(93418.1875, 14486.578125, 563.1906127929688),facingDirection=Vector3.new(-100, 2 - 1, 1 - 0)},{position=Vector3.new(94683.65625 - (111 + 1137), 14486.904296875, 564.0458374023438),facingDirection=Vector3.new(-(258 - (91 + 67)), 2 - 1, 1)},{position=Vector3.new(93950.375 - (423 + 100), 102.2158203125 + 14385, 1597.8006591796875 - 1020),facingDirection=Vector3.new(-(53 + 47), 772 - (326 + 445), 4 - 3)}};
+local function v135()
+	local v331 = 0 - 0;
+	local v332;
+	local v333;
+	local v334;
+	while true do
+		if (v331 == 1) then
+			v334 = 2 - 1;
+			while not v127 do
+				if v127 then
+					break;
+				end
+				local v608 = v134[v334];
+				v333.CFrame = CFrame.new(v608.position, v608.position + v608.facingDirection);
+				v133();
+				if ((v334 == #v134) and v129) then
+					v127 = true;
+					break;
+				end
+				v334 = (v334 % #v134) + 1;
+				task.wait(711.1 - (530 + 181));
+			end
+			break;
+		end
+		if (0 == v331) then
+			v332 = v117.Character or v117.CharacterAdded:Wait();
+			v333 = v332:WaitForChild("HumanoidRootPart");
+			v331 = 1;
+		end
+	end
+end
+local function v136()
+	v126 = true;
+	v127 = false;
+	v130(true);
+	v132();
+	local v335 = coroutine.create(v135);
+	coroutine.resume(v335);
+	while not v127 do
+		if v127 then
+			break;
+		end
+		task.wait(881.1 - (614 + 267));
+	end
+	v126 = false;
+	if v129 then
+		local v541 = 0;
+		while true do
+			if (v541 == 0) then
+				task.wait(32.1 - (19 + 13));
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/DracoSwagBaby/ScriptsBanger/refs/heads/main/ServerHop%20Script"))();
+				break;
+			end
+		end
+	else
+		v131();
+	end
+end
+local function v137()
+	v127 = true;
+	v126 = false;
+	v131();
+end
+v117.CharacterAdded:Connect(function()
+	local v336 = 0 - 0;
+	while true do
+		if (v336 == (0 - 0)) then
+			v127 = true;
+			v131();
+			break;
+		end
+	end
+end);
+local v9 = v6.AutoFarm:AddSection("Cash Farm Option");
+local v138 = v6.AutoFarm:AddToggle("MyToggle", {Title="Cash Farm",Description="Farm Cash in Third-Person (Top-Down), & Rapid Teleport",Default=false,Callback=function(v337)
+	if v337 then
+		if not v126 then
+			local v610 = 0;
+			while true do
+				if (v610 == 0) then
+					v128 = coroutine.create(v136);
+					coroutine.resume(v128);
+					break;
+				end
+			end
+		end
+	else
+		v137();
+	end
+end});
+local v139 = v6.AutoFarm:AddToggle("ServerHop", {Title="Enable Server Hop",Description="Server Hop at Third Coordinate",Default=false,Callback=function(v338)
+	v129 = v338;
+end});
+local v9 = v6.AutoFarm:AddSection("Construction Site Option");
+local v140 = true;
+local function v141()
+	if v140 then
+		v140 = false;
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/DracoSwagBaby/ScriptsBanger/refs/heads/main/AutoFarm%20Part%20Gray"))();
+		v0:Notify({Title="AutoFarm",Content="Starting AutoFarm...",SubContent="",Duration=(14 - 9)});
+		task.wait(16 + 44);
+		v140 = true;
+		v0:Notify({Title="AutoFarm",Content="Cooldown Over - You Can Run Again!",SubContent="",Duration=(8 - 3)});
+	else
+		v0:Notify({Title="AutoFarm",Content="Cooldown 60 Seconds",SubContent="",Duration=(6 - 3)});
+	end
+end
+v6.AutoFarm:AddButton({Title="Construction Site AutoFarm",Description="Automatically Building with PlyWood",Callback=v141});
+v6.AutoFarm:AddButton({Title="1. Make Sure To Not Move At All or May Break it"});
+v6.AutoFarm:AddButton({Title="2. If Does Not Get The Job it Depends on Your Ping"});
+local v9 = v6.AutoFarm:AddSection("More Farm Option S");
+v6.Money:AddButton({Title="Show Bank Balance",Description="",Callback=function()
+	local v339 = 1812 - (1293 + 519);
+	local v340;
+	while true do
+		if (v339 == (0 - 0)) then
+			v340 = game:GetService("Players").LocalPlayer.stored.Bank.Value;
+			v0:Notify({Title="Money Check",Content=("Your current bank balance is: " .. tostring(v340)),SubContent="",Duration=(7 - 4)});
+			break;
+		end
+	end
+end});
+local v142 = v6.Money;
+local v143 = false;
+v142:AddToggle("AutoMoney", {Title="10K Money Drop",Default=false,Callback=function(v341)
+	v143 = v341;
+	if v143 then
+		task.spawn(function()
+			while v143 do
+				game:GetService("ReplicatedStorage"):WaitForChild("BankProcessRemote"):InvokeServer("Drop", "10000");
+				v0:Notify({Title="Money Drop",Content="Dropped $10K",Duration=(3 - 1)});
+				task.wait(1);
+			end
+		end);
+	end
+end});
+v142:AddInput("WithdrawCash", {Default="",Numeric=false,Finished=true,Title="Withdraw Cash",Description="Maximum 90K",Placeholder="Enter amount",Callback=function(v342)
+	local v343 = 0 - 0;
+	local v344;
+	while true do
+		if (v343 == 0) then
+			v344 = tonumber(v342);
+			if (v344 and (v344 <= 90000) and (v344 > 0)) then
+				game:GetService("ReplicatedStorage").BankAction:FireServer("with", v344);
+				v0:Notify({Title="Withdraw",Content=("Withdrew $" .. v344),Duration=(6 - 3)});
+			else
+				v0:Notify({Title="Withdraw",Content="Invalid amount! Max 90K.",Duration=(2 + 1)});
+			end
+			break;
+		end
+	end
+end});
+v142:AddInput("DepositCash", {Default="",Numeric=false,Finished=true,Title="Deposit Cash",Description="Maximum 30K",Placeholder="Enter amount",Callback=function(v345)
+	local v346 = 0;
+	local v347;
+	while true do
+		if (v346 == 0) then
+			v347 = tonumber(v345);
+			if (v347 and (v347 <= (6121 + 23879)) and (v347 > 0)) then
+				game:GetService("ReplicatedStorage").BankAction:FireServer("depo", v347);
+				v0:Notify({Title="Deposit",Content=("Deposited $" .. v347),Duration=3});
+			else
+				v0:Notify({Title="Deposit",Content="Invalid amount! Max 30K.",Duration=(6 - 3)});
+			end
+			break;
+		end
+	end
+end});
+local v71 = false;
+local v55 = v6.Money:AddToggle("MyToggle", {Title="Deposit 30K Automatically",Default=false,Callback=function(v348)
+	v71 = v348;
+	if v71 then
+		task.spawn(function()
+			while v71 do
+				game:GetService("ReplicatedStorage"):WaitForChild("BankProcessRemote"):InvokeServer("Drop", "nan");
+				task.wait(0.1);
+				for v658, v659 in ipairs(game:GetService("Workspace"):GetDescendants()) do
+					if v659:IsA("ProximityPrompt") then
+						v659.HoldDuration = 0 + 0;
+						v659.MaxActivationDistance = 2 + 4;
+					end
+				end
+				task.wait(0.1 + 0);
+				game:GetService("ReplicatedStorage"):WaitForChild("BankAction"):FireServer("depo", "30000");
+				task.wait(1098 - (709 + 387));
+				game:GetService("ReplicatedStorage"):WaitForChild("BankAction"):FireServer("depo", "30000");
+				task.wait(1);
+			end
+		end);
+	end
+end});
+local v117 = game:GetService("Players").LocalPlayer;
+local function v100()
+	local v349 = v117:FindFirstChild("PlayerGui");
+	if not v349 then
+		return;
+	end
+	local v350 = Instance.new("ScreenGui");
+	v350.Name = "TeleportBlackout";
+	v350.Parent = v349;
+	local v353 = Instance.new("Frame");
+	v353.Size = UDim2.new(1859 - (673 + 1185), 0 - 0, 3 - 2, 0 - 0);
+	v353.Position = UDim2.new(0 + 0, 0 + 0, 0 - 0, 0 + 0);
+	v353.BackgroundColor3 = Color3.new(0, 0 - 0, 0 - 0);
+	v353.BackgroundTransparency = 1880 - (446 + 1434);
+	v353.Parent = v350;
+	local v359 = Instance.new("TextLabel");
+	v359.Size = UDim2.new(1283.6 - (1040 + 243), 0, 0.2 - 0, 1847 - (559 + 1288));
+	v359.Position = UDim2.new(1931.2 - (609 + 1322), 454 - (13 + 441), 0.55, 0);
+	v359.Text = "Unforgiven Hub";
+	v359.TextColor3 = Color3.new(3 - 2, 1, 2 - 1);
+	v359.TextScaled = true;
+	v359.BackgroundTransparency = 1;
+	v359.Font = Enum.Font.SourceSansBold;
+	v359.Parent = v353;
+	local v369 = Instance.new("ImageLabel");
+	v369.Size = UDim2.new(0.3 - 0, 0 + 0, 0.5 - 0, 0 + 0);
+	v369.Position = UDim2.new(0.35 + 0, 0, 0.15, 0);
+	v369.Image = ""; 
+	v369.BackgroundTransparency = 2 - 1;
+	v369.Parent = v353;
+	task.spawn(function()
+		for v542 = 0 + 0, 662 - 302, 4 + 1 do
+			if not v350.Parent then
+				break;
+			end
+			v369.Rotation = v542;
+			task.wait(0.02 + 0);
+		end
+	end);
+	task.delay(1, function()
+		if v350 then
+			v350:Destroy();
+		end
+	end);
+end
+getgenv().FreeFallMethod = false;
+task.spawn(function()
+	while task.wait() do
+		if FreeFallMethod then
+			local v591 = game:GetService("Players").LocalPlayer;
+			if (v591 and v591.Character and v591.Character:FindFirstChild("Humanoid")) then
+				local v660 = 0 + 0;
+				local v661;
+				while true do
+					if (v660 == (0 + 0)) then
+						v661 = v591.Character.Humanoid;
+						v661:ChangeState(Enum.HumanoidStateType.Freefall);
+						break;
+					end
+				end
+			end
+		end
+	end
+end);
+local function v144(v375)
+	local v376 = v117.Character or v117.CharacterAdded:Wait();
+	if (v376 and v376:FindFirstChild("HumanoidRootPart")) then
+		local v544 = 0;
+		local v545;
+		while true do
+			if (v544 == 1) then
+				task.wait(0.5);
+				v545 = v376.HumanoidRootPart;
+				v544 = 2 + 0;
+			end
+			if (v544 == (435 - (153 + 280))) then
+				v545.CFrame = CFrame.new(v375);
+				v545.Anchored = false;
+				v544 = 8 - 5;
+			end
+			if (v544 == (3 + 0)) then
+				task.wait(0.5 + 0);
+				getgenv().FreeFallMethod = false;
+				break;
+			end
+			if (v544 == (0 + 0)) then
+				v100();
+				getgenv().FreeFallMethod = true;
+				v544 = 1 + 0;
+			end
+		end
+	else
+		warn("[ERROR] Character or HumanoidRootPart not found!");
+	end
+end
+local v145 = {{"Safe Spot",Vector3.new(914.1957 - (89 + 578), 203.49849999999998 + 80, -648.4806)},{"Crafting Roof",Vector3.new(-(53.957899999999995 + 334), 340.3467, -558.864)},{"Store items",Vector3.new(8179.8984000000055 + 60335, 53027.5 - (84 + 2), -(1311.0900000000001 - 515))},{"Construction Site",Vector3.new(-(45.83069999999998 + 1686), 370.8123, -1176.8387)},{"Backpack Shop",Vector3.new(-(481.09613037109375 + 193), 562.59814453125 - 309, -(32.43463134765625 + 652))},{"Ice Box",Vector3.new(-(163.14073181152344 + 52), 772.5154113769531 - (457 + 32), -(534.6910400390625 + 724))},{"Frozen Shop",Vector3.new(-(50.70599999999999 + 140), 1001.8549 - 718, -1170.5918)},{"Drip Shop",Vector3.new(67462.6953, 10489.0352, 2349.5895 - (884 + 916))},{"Bank",Vector3.new(-(860.377 - (232 + 421)), 2172.6329 - (1569 + 320), -1214.6583)},{"Pawn Shop",Vector3.new(-(1654.6431 - (316 + 289)), 661.5367 - 408, -814.2697)},{"Pent House",Vector3.new(-(555.4557 - (360 + 65)), 392.4685 + 27, -(822.7767 - (79 + 175)))},{"Sewer",Vector3.new(81069.0078, 103890.0313 + 29243, 514.0926 - 346)},{"GunShop Lobby",Vector3.new(-1002.4224, 1152.6382 - (503 + 396), -(984.9125 - (92 + 89)))},{"Chicken Wings",Vector3.new(-957.9142, 490.5367 - 237, -(418.9442 + 397))},{"Deli Grocery",Vector3.new(-(3630.7261 - 2703), 35.136799999999994 + 218, -(1575.3687 - 884))},{"Dominos",Vector3.new(-(2250.7662 - 1511), 253.229, -955.422)},{"GunShop 1",Vector3.new(141778.8984 - 48809, 123341.9688 - (485 + 759), 17023.8867)},{"GunShop 2",Vector3.new(66197.125, 124804.7188 - (442 + 747), 6884.2305 - (832 + 303))},{"GunShop 3",Vector3.new(50335.3086 + 10485, 87609.1484, -351.4746)},{"CarDealer",Vector3.new(-(1871.0562 - 1492), 253.2626, -1246.4066)},{"Money Wash",Vector3.new(-977.1771, 253.6838, -(2348.5855 - 1656))}};
+for v377, v378 in ipairs(v145) do
+	v6.Teleport:AddButton({Title=v378[1],Description="Teleports You Safely",Callback=function()
+		v144(v378[1075 - (1036 + 37)]);
+	end});
+end
+v6.Shop:AddButton({Title="Shiesty (150$)",Description="Instantly buys the item",Callback=function()
+	game:GetService("ReplicatedStorage"):WaitForChild("ShopRemote"):InvokeServer("Shiesty");
+end});
+v6.Shop:AddButton({Title="Water (10$)",Description="Instantly buys the item",Callback=function()
+	game:GetService("ReplicatedStorage"):WaitForChild("ShopRemote"):InvokeServer("Water");
+end});
+v6.Shop:AddButton({Title="BlueGloves (10$)",Description="Instantly buys the item",Callback=function()
+	game:GetService("ReplicatedStorage"):WaitForChild("ShopRemote"):InvokeServer("BluGloves");
+end});
+v6.Shop:AddButton({Title="WhiteGloves (10$)",Description="Instantly buys the item",Callback=function()
+	game:GetService("ReplicatedStorage"):WaitForChild("ShopRemote"):InvokeServer("WhiteGloves");
+end});
+v6.Shop:AddButton({Title="BlackGloves (10$)",Description="Instantly buys the item",Callback=function()
+	game:GetService("ReplicatedStorage"):WaitForChild("ShopRemote"):InvokeServer("BlackGloves");
+end});
+v6.Shop:AddButton({Title="RawSteak (10$)",Description="Instantly buys the item",Callback=function()
+	game:GetService("ReplicatedStorage"):WaitForChild("ShopRemote"):InvokeServer("RawSteak");
+end});
+v6.Shop:AddButton({Title="RawChicken (10$)",Description="Instantly buys the item",Callback=function()
+	game:GetService("ReplicatedStorage"):WaitForChild("ShopRemote"):InvokeServer("RawChicken");
+end});
+v6.Shop:AddButton({Title="PinkCamoGloves (67$)",Description="Instantly buys the item",Callback=function()
+	game:GetService("ReplicatedStorage"):WaitForChild("ShopRemote"):InvokeServer("PinkCamoGloves");
+end});
+v6.Shop:AddButton({Title="RedCamoGloves (67$)",Description="Instantly buys the item",Callback=function()
+	game:GetService("ReplicatedStorage"):WaitForChild("ShopRemote"):InvokeServer("RedCamoGloves");
+end});
+v6.Shop:AddButton({Title="BluCamoGloves (67$)",Description="Instantly buys the item",Callback=function()
+	game:GetService("ReplicatedStorage"):WaitForChild("ShopRemote"):InvokeServer("BluCamoGloves");
+end});
+v6.ExoticShop:AddButton({Title="FakeCard (700$)",Description="Instantly buys the item",Callback=function()
+	game:GetService("ReplicatedStorage"):WaitForChild("ExoticShopRemote"):InvokeServer("FakeCard");
+end});
